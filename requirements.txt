@@ -1,0 +1,6 @@
+streamlit
+httpx
+edgedb
+async-lru
+nest-asyncio
+extra-streamlit-components
