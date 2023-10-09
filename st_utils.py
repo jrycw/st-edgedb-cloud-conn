@@ -45,7 +45,7 @@ def get_conn_dict() -> dict[str, Any]:
     return {}
 
 
-def _routine_clean(excluded_token: list[str],
+def _routine_clean(excluded_tokens: list[str],
                    threshold: float = 300) -> None:
     cur_ts = get_cur_ts()
 
@@ -53,7 +53,7 @@ def _routine_clean(excluded_token: list[str],
     to_del_loop_tokens = {t
                           for t, (_, loop_ts) in ld.items()
                           if cur_ts - loop_ts > threshold}
-    for _token in excluded_token:
+    for _token in excluded_tokens:
         to_del_loop_tokens.discard(_token)
     for k in to_del_loop_tokens:
         try:
@@ -65,7 +65,7 @@ def _routine_clean(excluded_token: list[str],
     to_del_conn_tokens = {t
                           for t, (_, conn_ts) in cd.items()
                           if cur_ts - conn_ts > threshold}
-    for _token in excluded_token:
+    for _token in excluded_tokens:
         to_del_conn_tokens.discard(_token)
     for k in to_del_conn_tokens:
         try:

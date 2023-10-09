@@ -94,13 +94,13 @@ if __name__ == '__main__':
     # How to gracefully close the db connection if the Streamlit server is shutdown?
     cur_ts = get_cur_ts()
     token = st.session_state.token
-    excluded_token = [token]
+    excluded_tokens = [token]
 
     loop = _prepare_loop(cur_ts, token)
     conn = _prepare_conn(cur_ts, token)
 
-    _display_res(token, loop, conn, excluded_token)
-    _routine_clean(excluded_token)
+    _display_res(token, loop, conn, excluded_tokens)
+    _routine_clean(excluded_tokens)
 
     asyncio.set_event_loop(loop)
     loop.run_until_complete(run(main, conn, token))

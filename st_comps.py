@@ -182,7 +182,7 @@ def _display_big_red_btn_and_db_calls(conn: EdgeDBCloudConn, token: str) -> None
 def _display_res(token: str,
                  loop: asyncio.AbstractEventLoop,
                  conn: EdgeDBCloudConn,
-                 excluded_token: list[str]) -> None:
+                 excluded_tokens: list[str]) -> None:
     with st.expander('Resource Info', expanded=True):
         col1, col2 = st.columns([65, 35])
     with col1:
@@ -198,7 +198,7 @@ def _display_res(token: str,
                 st.rerun()
         with col4:
             if st.button('Try Free Res', type='primary'):
-                _routine_clean(excluded_token, threshold=3)
+                _routine_clean(excluded_tokens, threshold=3)
 
 
 def _render_exception(exc: Exception) -> None:
